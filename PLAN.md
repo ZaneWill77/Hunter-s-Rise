@@ -43,9 +43,12 @@
 - `vendor\` (not in git): downloaded REFramework builds. Stable v1.5.9.1 is in use; nightly-01438 is kept as a fallback.
 
 ## Status
-- [ ] **Phase 0 — Setup** (scaffolding done; waiting on install and test)
-  1. Run `.\tools\install-reframework.ps1`
-  2. Launch MH Rise from Steam. The first launch may be slow while REFramework builds its cache.
-  3. Insert opens the REFramework menu.
-  4. Load into Kamura or Elgado, walk around, then start and finish a quick quest.
-  5. If anything fails, send me `re2_framework_log.txt` from the game folder.
+- [x] **Phase 0 — Setup** (passed 2026-11-09: menu opens, town and quest run with no crashes)
+- [x] **Phase 1 — VR baseline** (passed 2026-11-09: stereo, head tracking, frame rate, UI all OK through VDXR)
+  1. In the Virtual Desktop Streamer app on the PC, set the OpenXR runtime to **VDXR**. Connect the Quest 3 to the PC through Virtual Desktop *before* launching the game.
+  2. Launch MH Rise. Press Insert, open the **VR** section, and confirm it reports OpenXR running.
+  3. Rendering mode: start with the default (Native Stereo). If one eye is missing shadows or effects, or shows flicker, try **Synchronized AFR** and note the difference.
+  4. In-game graphics: turn off motion blur, depth of field, lens distortion and film grain where present. Set anti-aliasing to FXAA or off (TAA smears in VR). Turn off V-Sync and the frame rate cap. Lower image quality if needed.
+  5. Check: stereo depth looks correct, head tracking works, frame rate (Virtual Desktop performance overlay), and whether the game UI is visible and readable.
+  6. Expected: the camera is still third-person and moves on its own, so keep sessions short.
+  7. Report what looks wrong in each eye, plus the VR lines from `re2_framework_log.txt`.

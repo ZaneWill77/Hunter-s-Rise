@@ -20,6 +20,10 @@ function Assert-GameNotRunning {
 # Copy a file into the game folder, backing up anything it would overwrite.
 function Install-GameFile([string]$Source, [string]$RelativeDest) {
     $dest = Join-Path $GameDir $RelativeDest
+    if ((Test-Path $dest) -and ((Get-FileHash $dest).Hash -eq (Get-FileHash $Source).Hash)) {
+        Write-Host "  $RelativeDest already up to date"
+        return
+    }
     if (Test-Path $dest) {
         $stamp  = Get-Date -Format "yyyyMMdd-HHmmss"
         $backup = Join-Path $BackupRoot "$stamp\$RelativeDest"
